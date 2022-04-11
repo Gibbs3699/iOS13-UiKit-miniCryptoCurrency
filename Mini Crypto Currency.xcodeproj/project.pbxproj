@@ -18,6 +18,7 @@
 		DC08172D2803DB20009816CD /* CryptoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC08172C2803DB20009816CD /* CryptoTableViewCell.swift */; };
 		DC0817312803DB6E009816CD /* CustomColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0817302803DB6E009816CD /* CustomColor.swift */; };
 		DC0817392803E34C009816CD /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = DC0817382803E34C009816CD /* SDWebImage */; };
+		DC0817462804396B009816CD /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0817452804396B009816CD /* String+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +34,7 @@
 		DC0817292803DB1E009816CD /* CryptoTableViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoTableViewCellViewModel.swift; sourceTree = "<group>"; };
 		DC08172C2803DB20009816CD /* CryptoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoTableViewCell.swift; sourceTree = "<group>"; };
 		DC0817302803DB6E009816CD /* CustomColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomColor.swift; sourceTree = "<group>"; };
+		DC0817452804396B009816CD /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +71,7 @@
 				DC0817302803DB6E009816CD /* CustomColor.swift */,
 				DC0817262803DB1B009816CD /* CryptoTableViewController.swift */,
 				DC08172C2803DB20009816CD /* CryptoTableViewCell.swift */,
+				DC0817452804396B009816CD /* String+Extension.swift */,
 				DC08173B2803F22B009816CD /* ViewModels */,
 				DC08170E28033430009816CD /* Models */,
 				DC08170628032D2F009816CD /* Services */,
@@ -181,6 +184,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DC08170C2803342E009816CD /* Crypto.swift in Sources */,
+				DC0817462804396B009816CD /* String+Extension.swift in Sources */,
 				DC0817272803DB1B009816CD /* CryptoTableViewController.swift in Sources */,
 				DC08170828032D3F009816CD /* WebServices.swift in Sources */,
 				DC08172A2803DB1E009816CD /* CryptoTableViewCellViewModel.swift in Sources */,

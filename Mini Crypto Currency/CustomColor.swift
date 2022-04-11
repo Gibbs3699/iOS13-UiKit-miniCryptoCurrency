@@ -12,6 +12,7 @@ enum Color {
     
     static let cryptoCellColor  = UIColor(named: "Coin Cell")
     static let searchBarColor  = UIColor(named: "Search Bar")
-    static let nameLabelColor  = UIColor(named: "Name Label")
+    static let textLabelColor  = UIColor(named: "Name Label")
     static let symbolLabelColor  = UIColor(named: "Symbol Label")
+    static let greenChangeLabelColor  = UIColor(named: "Green")
 }

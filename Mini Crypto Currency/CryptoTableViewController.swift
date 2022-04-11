@@ -10,7 +10,6 @@ import UIKit
 import SDWebImage
 
 class CryptoTableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-    
     private let tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.register(CryptoTableViewCell.self, forCellReuseIdentifier: CryptoTableViewCell.identifier)
@@ -18,42 +17,27 @@ class CryptoTableViewController: UIViewController, UITableViewDataSource, UITabl
         return tableView
     }()
     
-//    private var viewModels = [CryptoTableViewCellViewModel]()
+    static let numberFormatter: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.locale = .current
+        formatter.allowsFloats = true
+        formatter.numberStyle = .currency
+        formatter.formatterBehavior = .default
+        return formatter
+    }()
     
     private var cryptoListViewModel = CryptoListViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(tableView)
+        
+
         tableView.dataSource = self
         tableView.delegate = self
+        self.tableView.sectionHeaderHeight = 70
         
-//        WebServices.shared.getAllCryptoData { [weak self] result in
-//            switch result {
-//            case .success(let models):
-////                let iconUrl = URL(string: models.data.coins.iconUrl.filter({ icon in }))
-//
-//                self?.viewModels = models.data.coins.compactMap({
-//                   CryptoTableViewCellViewModel(
-//                        name: $0.name,
-//                        symbol: $0.symbol,
-//                        price: $0.symbol,
-//                        change: $0.change,
-//                        iconUrl: $0.iconUrl
-//                   )
-//                })
-//
-//                DispatchQueue.main.async {
-//                    self?.tableView.reloadData()
-//                }
-//
-//                print(models.data.coins)
-//            case .failure(let error):
-//                print("Error: \(error)")
-//            }
-//        }
-        
-        Webservice().load(resource: Crypto.get) { [weak self] result in
+        WebServices().load(resource: Crypto.get) { [weak self] result in
             switch result {
             case .success(let models):
                 self?.cryptoListViewModel.cryptoViewModel = models.data.coins.map(CryptoViewModel.init)
@@ -76,11 +60,21 @@ class CryptoTableViewController: UIViewController, UITableViewDataSource, UITabl
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         guard let cell = tableView.dequeueReusableCell(withIdentifier: CryptoTableViewCell.identifier , for: indexPath) as? CryptoTableViewCell else {
             fatalError()
         }
         
-        let recipe = cryptoListViewModel.recipes[indexPath.row]
+        let cryptos = self.cryptoListViewModel.cryptoViewModel(at: indexPath.row)
+
+        cell.iconView.sd_setImage(with: URL(string: cryptos.iconUrl))
+        cell.nameLabel.text = cryptos.name
+        cell.symbolLabel.text = cryptos.symbol
+        cell.priceLabel.text =  cryptos.price.currencyFormatting()
+        cell.changeLabel.textColor = cryptos.percentageChangeColor()
+        cell.arrowIconView.image = cryptos
+        cell.arrowIconView.tintColor = cryptos.percentageChangeColor()
+        cell.changeLabel.text = cryptos.change
         
         return cell
     }
@@ -89,5 +83,22 @@ class CryptoTableViewController: UIViewController, UITableViewDataSource, UITabl
         return 100
     }
     
-   
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+            let headerView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: tableView.frame.width, height: 50))
+            headerView.backgroundColor = .white
+            
+            let label = UILabel()
+            label.frame = CGRect.init(x: 16, y: 5, width: headerView.frame.width - 10, height: headerView.frame.height - 10)
+            label.text = "Buy, sell and hold crypto"
+            label.font = .systemFont(ofSize: 16, weight: .bold)
+            label.textColor = Color.textLabelColor
+            
+            headerView.addSubview(label)
+            
+            return headerView
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+            return 50
+    }
 }

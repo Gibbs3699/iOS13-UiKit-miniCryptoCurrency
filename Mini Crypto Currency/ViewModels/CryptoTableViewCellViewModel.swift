@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 class CryptoListViewModel {
 
@@ -35,7 +36,7 @@ extension CryptoViewModel {
     var symbol : String {
         return self.crypto.symbol
     }
-
+    
     var price : String {
         return self.crypto.price
     }
@@ -46,5 +47,15 @@ extension CryptoViewModel {
     
     var iconUrl : String {
         return self.crypto.iconUrl
+    }
+    
+    func percentageChangeColor() -> UIColor {
+        guard let percentChange = Float(self.crypto.change) else { return .red }
+        return percentChange >= 0 ? .green : .red
+    }
+    
+    func arrowSign() -> UIImage {
+        guard let percentChange = Float(self.crypto.change) else { return UIImage()}
+        return percentChange >= 0 ? UIImage(systemName: "arrow.up") : UIImage(systemName: "arrow.doown")
     }
 }

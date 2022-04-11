@@ -27,30 +27,12 @@ struct Coins: Codable {
 extension Crypto {
     
     static var get: Resource<Crypto> = {
-        
+
         guard let url = URL(string: "https://api.coinranking.com/v2/coins") else {
             fatalError("URL is incorrect!")
         }
-        
+
         return  Resource<Crypto>(url: url)
-        
+
     }()
-    
-//    static func post(vm: AddCoffeeOrderViewModel) -> Resource<Order?> {
-//        let order = Order(vm)
-//
-//        guard let url = URL(string: "https://warp-wiry-rugby.glitch.me/orders") else {
-//            fatalError("URL is incorrect!")
-//        }
-//
-//        guard let data = try? JSONEncoder().encode(order) else {
-//            fatalError("Error encoding order!")
-//        }
-//
-//        var resource = Resource<Order?>(url: url)
-//        resource.httpMethod = HttpMethod.post
-//        resource.body = data
-//
-//        return resource
-//    }
 }

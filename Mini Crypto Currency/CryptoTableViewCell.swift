@@ -21,7 +21,7 @@ class CryptoTableViewCell: UITableViewCell {
     
     static let identifier = "CryptoTableViewCell"
 
-    let cellView: UIView = {
+    var cellView: UIView = {
         let view = UIView()
         view.backgroundColor = Color.cryptoCellColor
         view.layer.cornerRadius = 8.0
@@ -34,15 +34,15 @@ class CryptoTableViewCell: UITableViewCell {
         return view
     }()
     
-    private let nameLabel: UILabel = {
+    var nameLabel: UILabel = {
         let label = UILabel()
-        label.textColor = Color.nameLabelColor
+        label.textColor = Color.textLabelColor
         label.font = .systemFont(ofSize: 16, weight: .bold)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
-    private let symbolLabel: UILabel = {
+    var symbolLabel: UILabel = {
         let label = UILabel()
         label.textColor = Color.symbolLabelColor
         label.font = .systemFont(ofSize: 14, weight: .bold)
@@ -50,27 +50,44 @@ class CryptoTableViewCell: UITableViewCell {
         return label
     }()
     
-    private let priceLabel: UILabel = {
+    var priceLabel: UILabel = {
         let label = UILabel()
         label.textColor = .green
-        label.textAlignment = .right
-        label.font = .systemFont(ofSize: 20, weight: .medium)
+//        label.textAlignment = .right
+        label.textColor = Color.textLabelColor
+        label.font = .systemFont(ofSize: 12, weight: .bold)
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
-    private let changeLabel: UILabel = {
+    var changeLabel: UILabel = {
         let label = UILabel()
-        label.textColor = .red
-        label.textAlignment = .right
-        label.font = .systemFont(ofSize: 20, weight: .medium)
+//        label.textAlignment = .right
+        label.font = .systemFont(ofSize: 12, weight: .medium)
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
-    private let iconView: UIImageView = {
+    var iconView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFit
         return imageView
+    }()
+    
+    var arrowIconView: UIImageView = {
+        let image = UIImage(systemName: "arrow.up")
+        let imageView = UIImageView(image: image)
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
+    
+    let changeLabelStack: UIStackView = {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .horizontal
+        stackView.spacing = 0
+        return stackView
     }()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -88,39 +105,47 @@ class CryptoTableViewCell: UITableViewCell {
         contentView.addSubview(iconView)
         contentView.addSubview(nameLabel)
         contentView.addSubview(symbolLabel)
+        contentView.addSubview(priceLabel)
+        changeLabelStack.addArrangedSubview(arrowIconView)
+        changeLabelStack.addArrangedSubview(changeLabel)
+        contentView.addSubview(changeLabelStack)
         self.selectionStyle = .none
-//        contentView.addSubview(symbolLabel)
-//        contentView.addSubview(priceLabel)
-//        contentView.addSubview(changeLabel)
         
         // cellView
         NSLayoutConstraint.activate([
             cellView.topAnchor.constraint(equalTo: self.topAnchor, constant: 20),
             cellView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -10),
             cellView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 10),
-            cellView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
+            cellView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+            
+            // imageView
+            iconView.heightAnchor.constraint(equalToConstant: 40),
+            iconView.widthAnchor.constraint(equalToConstant: 40),
+            iconView.centerYAnchor.constraint(equalTo: cellView.centerYAnchor),
+            iconView.leftAnchor.constraint(equalTo: cellView.leftAnchor, constant: 20),
+            
+            // nameLabel
+            nameLabel.topAnchor.constraint(equalTo: iconView.topAnchor),
+            nameLabel.leadingAnchor.constraint(equalTo: iconView.trailingAnchor, constant: 16),
+            nameLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8),
+            
+            // symbolLabel
+            symbolLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 6),
+            symbolLabel.leadingAnchor.constraint(equalTo: iconView.trailingAnchor, constant: 16),
+            symbolLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8),
+            
+            // priceLabel
+            priceLabel.topAnchor.constraint(equalTo: iconView.topAnchor, constant: 6),
+            priceLabel.rightAnchor.constraint(equalTo: cellView.rightAnchor, constant: -20),
+
+            arrowIconView.heightAnchor.constraint(equalToConstant: 12),
+            arrowIconView.widthAnchor.constraint(equalToConstant: 12),
+            
+            // changeLabel
+            changeLabelStack.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 6),
+            changeLabelStack.rightAnchor.constraint(equalTo: cellView.rightAnchor, constant: -20)
         ])
         
-        // imageView
-        iconView.heightAnchor.constraint(equalToConstant: 40).isActive = true
-        iconView.widthAnchor.constraint(equalToConstant: 40).isActive = true
-        iconView.centerYAnchor.constraint(equalTo: cellView.centerYAnchor).isActive = true
-        iconView.leftAnchor.constraint(equalTo: cellView.leftAnchor, constant: 20).isActive = true
-        
-        // nameLabel
-        nameLabel.topAnchor.constraint(equalTo: iconView.topAnchor).isActive = true
-        nameLabel.leadingAnchor.constraint(equalTo: iconView.trailingAnchor, constant: 16).isActive = true
-        nameLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8).isActive = true
-        
-        // symbolLabel
-        symbolLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 6).isActive = true
-        symbolLabel.leadingAnchor.constraint(equalTo: iconView.trailingAnchor, constant: 16).isActive = true
-        symbolLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8).isActive = true
-        
-//        // priceLabel
-
-
-//        // changeLabel
 
     }
     
