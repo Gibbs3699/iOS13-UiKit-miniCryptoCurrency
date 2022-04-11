@@ -9,21 +9,29 @@
 /* Begin PBXBuildFile section */
 		DC0816E928032958009816CD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0816E828032958009816CD /* AppDelegate.swift */; };
 		DC0816EB28032958009816CD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0816EA28032958009816CD /* SceneDelegate.swift */; };
-		DC0816ED28032958009816CD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0816EC28032958009816CD /* ViewController.swift */; };
-		DC0816F028032958009816CD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC0816EE28032958009816CD /* Main.storyboard */; };
 		DC0816F22803295A009816CD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC0816F12803295A009816CD /* Assets.xcassets */; };
 		DC0816F52803295A009816CD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC0816F32803295A009816CD /* LaunchScreen.storyboard */; };
+		DC08170828032D3F009816CD /* WebServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC08170728032D3F009816CD /* WebServices.swift */; };
+		DC08170C2803342E009816CD /* Crypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC08170B2803342E009816CD /* Crypto.swift */; };
+		DC0817272803DB1B009816CD /* CryptoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0817262803DB1B009816CD /* CryptoTableViewController.swift */; };
+		DC08172A2803DB1E009816CD /* CryptoTableViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0817292803DB1E009816CD /* CryptoTableViewCellViewModel.swift */; };
+		DC08172D2803DB20009816CD /* CryptoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC08172C2803DB20009816CD /* CryptoTableViewCell.swift */; };
+		DC0817312803DB6E009816CD /* CustomColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0817302803DB6E009816CD /* CustomColor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		DC0816E528032958009816CD /* Mini Crypto Currency.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Mini Crypto Currency.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC0816E828032958009816CD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DC0816EA28032958009816CD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		DC0816EC28032958009816CD /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		DC0816EF28032958009816CD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DC0816F12803295A009816CD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DC0816F42803295A009816CD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DC0816F62803295A009816CD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DC08170728032D3F009816CD /* WebServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebServices.swift; sourceTree = "<group>"; };
+		DC08170B2803342E009816CD /* Crypto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Crypto.swift; sourceTree = "<group>"; };
+		DC0817262803DB1B009816CD /* CryptoTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoTableViewController.swift; sourceTree = "<group>"; };
+		DC0817292803DB1E009816CD /* CryptoTableViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoTableViewCellViewModel.swift; sourceTree = "<group>"; };
+		DC08172C2803DB20009816CD /* CryptoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoTableViewCell.swift; sourceTree = "<group>"; };
+		DC0817302803DB6E009816CD /* CustomColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomColor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +64,35 @@
 		DC0816E728032958009816CD /* Mini Crypto Currency */ = {
 			isa = PBXGroup;
 			children = (
+				DC0817302803DB6E009816CD /* CustomColor.swift */,
+				DC0817262803DB1B009816CD /* CryptoTableViewController.swift */,
+				DC0817292803DB1E009816CD /* CryptoTableViewCellViewModel.swift */,
+				DC08172C2803DB20009816CD /* CryptoTableViewCell.swift */,
+				DC08170E28033430009816CD /* Models */,
+				DC08170628032D2F009816CD /* Services */,
 				DC0816E828032958009816CD /* AppDelegate.swift */,
 				DC0816EA28032958009816CD /* SceneDelegate.swift */,
-				DC0816EC28032958009816CD /* ViewController.swift */,
-				DC0816EE28032958009816CD /* Main.storyboard */,
 				DC0816F12803295A009816CD /* Assets.xcassets */,
 				DC0816F32803295A009816CD /* LaunchScreen.storyboard */,
 				DC0816F62803295A009816CD /* Info.plist */,
 			);
 			path = "Mini Crypto Currency";
+			sourceTree = "<group>";
+		};
+		DC08170628032D2F009816CD /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				DC08170728032D3F009816CD /* WebServices.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		DC08170E28033430009816CD /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				DC08170B2803342E009816CD /* Crypto.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -126,7 +154,6 @@
 			files = (
 				DC0816F52803295A009816CD /* LaunchScreen.storyboard in Resources */,
 				DC0816F22803295A009816CD /* Assets.xcassets in Resources */,
-				DC0816F028032958009816CD /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -137,23 +164,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DC0816ED28032958009816CD /* ViewController.swift in Sources */,
+				DC08170C2803342E009816CD /* Crypto.swift in Sources */,
+				DC0817272803DB1B009816CD /* CryptoTableViewController.swift in Sources */,
+				DC08170828032D3F009816CD /* WebServices.swift in Sources */,
+				DC08172A2803DB1E009816CD /* CryptoTableViewCellViewModel.swift in Sources */,
 				DC0816E928032958009816CD /* AppDelegate.swift in Sources */,
 				DC0816EB28032958009816CD /* SceneDelegate.swift in Sources */,
+				DC0817312803DB6E009816CD /* CustomColor.swift in Sources */,
+				DC08172D2803DB20009816CD /* CryptoTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		DC0816EE28032958009816CD /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				DC0816EF28032958009816CD /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		DC0816F32803295A009816CD /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -216,7 +240,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -271,7 +295,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -293,7 +317,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "Kamonpan.minicryptocurrency.Mini-Crypto-Currency";
+				PRODUCT_BUNDLE_IDENTIFIER = "Kamonpan.Mini-Crypto-Currency";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -312,7 +336,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "Kamonpan.minicryptocurrency.Mini-Crypto-Currency";
+				PRODUCT_BUNDLE_IDENTIFIER = "Kamonpan.Mini-Crypto-Currency";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
