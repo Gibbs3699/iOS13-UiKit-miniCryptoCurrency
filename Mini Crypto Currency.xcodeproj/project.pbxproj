@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -17,6 +17,7 @@
 		DC08172A2803DB1E009816CD /* CryptoTableViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0817292803DB1E009816CD /* CryptoTableViewCellViewModel.swift */; };
 		DC08172D2803DB20009816CD /* CryptoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC08172C2803DB20009816CD /* CryptoTableViewCell.swift */; };
 		DC0817312803DB6E009816CD /* CustomColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0817302803DB6E009816CD /* CustomColor.swift */; };
+		DC0817392803E34C009816CD /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = DC0817382803E34C009816CD /* SDWebImage */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +40,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DC0817392803E34C009816CD /* SDWebImage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -66,8 +68,8 @@
 			children = (
 				DC0817302803DB6E009816CD /* CustomColor.swift */,
 				DC0817262803DB1B009816CD /* CryptoTableViewController.swift */,
-				DC0817292803DB1E009816CD /* CryptoTableViewCellViewModel.swift */,
 				DC08172C2803DB20009816CD /* CryptoTableViewCell.swift */,
+				DC08173B2803F22B009816CD /* ViewModels */,
 				DC08170E28033430009816CD /* Models */,
 				DC08170628032D2F009816CD /* Services */,
 				DC0816E828032958009816CD /* AppDelegate.swift */,
@@ -95,6 +97,14 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		DC08173B2803F22B009816CD /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				DC0817292803DB1E009816CD /* CryptoTableViewCellViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -111,6 +121,9 @@
 			dependencies = (
 			);
 			name = "Mini Crypto Currency";
+			packageProductDependencies = (
+				DC0817382803E34C009816CD /* SDWebImage */,
+			);
 			productName = "Mini Crypto Currency";
 			productReference = DC0816E528032958009816CD /* Mini Crypto Currency.app */;
 			productType = "com.apple.product-type.application";
@@ -138,6 +151,9 @@
 				Base,
 			);
 			mainGroup = DC0816DC28032958009816CD;
+			packageReferences = (
+				DC0817372803E34C009816CD /* XCRemoteSwiftPackageReference "SDWebImage" */,
+			);
 			productRefGroup = DC0816E628032958009816CD /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -365,6 +381,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		DC0817372803E34C009816CD /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImage.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.12.5;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		DC0817382803E34C009816CD /* SDWebImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DC0817372803E34C009816CD /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			productName = SDWebImage;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = DC0816DD28032958009816CD /* Project object */;
 }

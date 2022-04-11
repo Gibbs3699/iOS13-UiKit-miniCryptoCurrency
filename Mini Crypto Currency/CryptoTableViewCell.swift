@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import SDWebImage
 
 struct CryptoTableViewCellViewModel {
     let name: String
@@ -69,6 +68,7 @@ class CryptoTableViewCell: UITableViewCell {
     
     private let iconView: UIImageView = {
         let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFit
         return imageView
     }()
@@ -84,6 +84,10 @@ class CryptoTableViewCell: UITableViewCell {
     }
     
     func setupView() {
+        contentView.addSubview(cellView)
+        contentView.addSubview(iconView)
+        contentView.addSubview(nameLabel)
+        contentView.addSubview(symbolLabel)
         self.selectionStyle = .none
 //        contentView.addSubview(symbolLabel)
 //        contentView.addSubview(priceLabel)
@@ -104,48 +108,29 @@ class CryptoTableViewCell: UITableViewCell {
         iconView.leftAnchor.constraint(equalTo: cellView.leftAnchor, constant: 20).isActive = true
         
         // nameLabel
-//        nameLabel.heightAnchor.constraint(equalToConstant: 100).isActive = true
-//        nameLabel.widthAnchor.constraint(equalToConstant: 100).isActive = true
-//        nameLabel.leadingAnchor.constraint(equalTo: iconView.trailingAnchor, constant: 2).isActive = true
+        nameLabel.topAnchor.constraint(equalTo: iconView.topAnchor).isActive = true
+        nameLabel.leadingAnchor.constraint(equalTo: iconView.trailingAnchor, constant: 16).isActive = true
+        nameLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8).isActive = true
         
-        contentView.addSubview(cellView)
-//        contentView.addSubview(nameLabel)
-        contentView.addSubview(iconView)
-//        // symbolLabel
-//        NSLayoutConstraint.activate([
-//            cellView.topAnchor.constraint(equalTo: self.topAnchor, constant: 20),
-//            cellView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -10),
-//            cellView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 10),
-//            cellView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
-//        ])
-//
+        // symbolLabel
+        symbolLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 6).isActive = true
+        symbolLabel.leadingAnchor.constraint(equalTo: iconView.trailingAnchor, constant: 16).isActive = true
+        symbolLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8).isActive = true
+        
 //        // priceLabel
-//        NSLayoutConstraint.activate([
-//            cellView.topAnchor.constraint(equalTo: self.topAnchor, constant: 20),
-//            cellView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -10),
-//            cellView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 10),
-//            cellView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
-//        ])
-//
+
+
 //        // changeLabel
-//        NSLayoutConstraint.activate([
-//            cellView.topAnchor.constraint(equalTo: self.topAnchor, constant: 20),
-//            cellView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -10),
-//            cellView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 10),
-//            cellView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
-//        ])
-        
-//        cellView.sizeToFit()
-//        nameLabel.sizeToFit()
-//        symbolLabel.sizeToFit()
-//        priceLabel.sizeToFit()
-//        changeLabel.sizeToFit()
-//
-//
-//        nameLabel.frame = CGRect(x: 15, y: 0, width: contentView.frame.size.width/2, height: contentView.frame.size.height/2)
-//        symbolLabel.frame = CGRect(x: 15, y: contentView.frame.size.height/2 , width: contentView.frame.size.width/2, height: contentView.frame.size.height/2)
-//        priceLabel.frame = CGRect(x: contentView.frame.size.width/2, y: 0, width: (contentView.frame.size.width/2)-15, height: contentView.frame.size.height)
-//        priceLabel.frame = CGRect(x: contentView.frame.size.width/2, y: 0, width: (contentView.frame.size.width/2)-15, height: contentView.frame.size.height/2)
+
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        nameLabel.text = nil
+        priceLabel.text = nil
+        symbolLabel.text = nil
+        changeLabel.text = nil
+        iconView.image = nil
     }
     
     func configure(with viewModel: CryptoTableViewCellViewModel) {
@@ -153,6 +138,9 @@ class CryptoTableViewCell: UITableViewCell {
         priceLabel.text = viewModel.price
         symbolLabel.text = viewModel.symbol
         changeLabel.text = viewModel.change
-        iconView.image.sd_setImage(with: URL(string: viewModel.iconUrl))
+        
+        DispatchQueue.main.async {
+            self.iconView.sd_setImage(with: URL(string: viewModel.iconUrl), completed: nil)
+        }
     }
 }
