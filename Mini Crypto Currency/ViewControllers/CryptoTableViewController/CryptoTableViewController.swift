@@ -10,6 +10,7 @@ import UIKit
 import SDWebImage
 
 class CryptoTableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    
     private let tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.register(CryptoTableViewCell.self, forCellReuseIdentifier: CryptoTableViewCell.identifier)
@@ -17,27 +18,23 @@ class CryptoTableViewController: UIViewController, UITableViewDataSource, UITabl
         return tableView
     }()
     
-    static let numberFormatter: NumberFormatter = {
-        let formatter = NumberFormatter()
-        formatter.locale = .current
-        formatter.allowsFloats = true
-        formatter.numberStyle = .currency
-        formatter.formatterBehavior = .default
-        return formatter
-    }()
-    
     private var cryptoListViewModel = CryptoListViewModel()
+    
+    static var coinUUID = ""
+    
+    let refreshControl = UIRefreshControl()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(tableView)
-        
-
+    
         tableView.dataSource = self
         tableView.delegate = self
-        self.tableView.sectionHeaderHeight = 70
         
-        WebServices().load(resource: Crypto.get) { [weak self] result in
+        self.tableView.sectionHeaderHeight = 70
+        self.tableView.separatorStyle = .none
+        
+        WebServices().load(resource: Crypto.getAll) { [weak self] result in
             switch result {
             case .success(let models):
                 self?.cryptoListViewModel.cryptoViewModel = models.data.coins.map(CryptoViewModel.init)
@@ -47,6 +44,8 @@ class CryptoTableViewController: UIViewController, UITableViewDataSource, UITabl
                 print(error)
             }
         }
+        
+        setupRefreshControl()
         
     }
     
@@ -66,13 +65,15 @@ class CryptoTableViewController: UIViewController, UITableViewDataSource, UITabl
         }
         
         let cryptos = self.cryptoListViewModel.cryptoViewModel(at: indexPath.row)
-
-        cell.iconView.sd_setImage(with: URL(string: cryptos.iconUrl))
+        
+        let url = URL(string: cryptos.iconUrl)
+        let placeholderImage = UIImage(systemName: "bitcoinsign.circle.fill")
+        cell.iconView.sd_setImage(with: url, placeholderImage: placeholderImage)
         cell.nameLabel.text = cryptos.name
         cell.symbolLabel.text = cryptos.symbol
         cell.priceLabel.text =  cryptos.price.currencyFormatting()
         cell.changeLabel.textColor = cryptos.percentageChangeColor()
-        cell.arrowIconView.image = cryptos
+        cell.arrowIconView.image = UIImage(systemName: cryptos.arrowSign())
         cell.arrowIconView.tintColor = cryptos.percentageChangeColor()
         cell.changeLabel.text = cryptos.change
         
@@ -81,6 +82,17 @@ class CryptoTableViewController: UIViewController, UITableViewDataSource, UITabl
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cryptoDetailVC = CryptoDetailViewController()
+        let navVC = UINavigationController(rootViewController: cryptoDetailVC)
+        let cryptos = self.cryptoListViewModel.cryptoViewModel(at: indexPath.row)
+        
+        CryptoTableViewController.coinUUID = cryptos.uuid
+        
+        present(navVC, animated: true)
+
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -99,6 +111,39 @@ class CryptoTableViewController: UIViewController, UITableViewDataSource, UITabl
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-            return 50
+            return 30
+    }
+    
+    func setupRefreshControl() {
+        refreshControl.addTarget(self, action: #selector(refreshContent), for: .valueChanged)
+        tableView.refreshControl = refreshControl
+    }
+}
+
+// MARK: - Action
+
+extension CryptoTableViewController {
+    
+    @objc func refreshContent() {
+        
+        let group = DispatchGroup()
+        
+        group.enter()
+        WebServices().load(resource: Crypto.getAll) { [weak self] result in
+            switch result {
+            case .success(let models):
+                self?.cryptoListViewModel.cryptoViewModel = models.data.coins.map(CryptoViewModel.init)
+                self?.tableView.reloadData()
+                print(models)
+            case .failure(let error):
+                print(error)
+            }
+            group.leave()
+        }
+        
+        group.notify(queue: .main) {
+            self.tableView.reloadData()
+            self.refreshControl.endRefreshing()
+        }
     }
 }

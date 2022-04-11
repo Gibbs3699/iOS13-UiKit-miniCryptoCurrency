@@ -19,6 +19,9 @@
 		DC0817312803DB6E009816CD /* CustomColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0817302803DB6E009816CD /* CustomColor.swift */; };
 		DC0817392803E34C009816CD /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = DC0817382803E34C009816CD /* SDWebImage */; };
 		DC0817462804396B009816CD /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0817452804396B009816CD /* String+Extension.swift */; };
+		DC08174A280490C7009816CD /* CryptoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC081749280490C7009816CD /* CryptoDetailViewController.swift */; };
+		DC08174D280490E5009816CD /* CryptoDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC08174C280490E5009816CD /* CryptoDetailViewModel.swift */; };
+		DC0817512804910B009816CD /* CryptoDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0817502804910B009816CD /* CryptoDetail.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +38,9 @@
 		DC08172C2803DB20009816CD /* CryptoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoTableViewCell.swift; sourceTree = "<group>"; };
 		DC0817302803DB6E009816CD /* CustomColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomColor.swift; sourceTree = "<group>"; };
 		DC0817452804396B009816CD /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
+		DC081749280490C7009816CD /* CryptoDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoDetailViewController.swift; sourceTree = "<group>"; };
+		DC08174C280490E5009816CD /* CryptoDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoDetailViewModel.swift; sourceTree = "<group>"; };
+		DC0817502804910B009816CD /* CryptoDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoDetail.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,17 +74,12 @@
 		DC0816E728032958009816CD /* Mini Crypto Currency */ = {
 			isa = PBXGroup;
 			children = (
-				DC0817302803DB6E009816CD /* CustomColor.swift */,
-				DC0817262803DB1B009816CD /* CryptoTableViewController.swift */,
-				DC08172C2803DB20009816CD /* CryptoTableViewCell.swift */,
-				DC0817452804396B009816CD /* String+Extension.swift */,
-				DC08173B2803F22B009816CD /* ViewModels */,
+				DC08175A2804F429009816CD /* Views */,
+				DC0817592804F400009816CD /* ViewControllers */,
 				DC08170E28033430009816CD /* Models */,
 				DC08170628032D2F009816CD /* Services */,
-				DC0816E828032958009816CD /* AppDelegate.swift */,
-				DC0816EA28032958009816CD /* SceneDelegate.swift */,
-				DC0816F12803295A009816CD /* Assets.xcassets */,
-				DC0816F32803295A009816CD /* LaunchScreen.storyboard */,
+				DC0817582804F3E6009816CD /* Utils */,
+				DC08175D2804F4CD009816CD /* Resources */,
 				DC0816F62803295A009816CD /* Info.plist */,
 			);
 			path = "Mini Crypto Currency";
@@ -95,17 +96,65 @@
 		DC08170E28033430009816CD /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				DC0817502804910B009816CD /* CryptoDetail.swift */,
 				DC08170B2803342E009816CD /* Crypto.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
 		};
-		DC08173B2803F22B009816CD /* ViewModels */ = {
+		DC0817582804F3E6009816CD /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				DC0817452804396B009816CD /* String+Extension.swift */,
+				DC0817302803DB6E009816CD /* CustomColor.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		DC0817592804F400009816CD /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				DC08175C2804F4AA009816CD /* CryptoDetailViewController */,
+				DC08175B2804F43E009816CD /* CryptoTableViewController */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		DC08175A2804F429009816CD /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				DC08172C2803DB20009816CD /* CryptoTableViewCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		DC08175B2804F43E009816CD /* CryptoTableViewController */ = {
+			isa = PBXGroup;
+			children = (
+				DC0817262803DB1B009816CD /* CryptoTableViewController.swift */,
+				DC08174C280490E5009816CD /* CryptoDetailViewModel.swift */,
+			);
+			path = CryptoTableViewController;
+			sourceTree = "<group>";
+		};
+		DC08175C2804F4AA009816CD /* CryptoDetailViewController */ = {
+			isa = PBXGroup;
+			children = (
+				DC081749280490C7009816CD /* CryptoDetailViewController.swift */,
 				DC0817292803DB1E009816CD /* CryptoTableViewCellViewModel.swift */,
 			);
-			path = ViewModels;
+			path = CryptoDetailViewController;
+			sourceTree = "<group>";
+		};
+		DC08175D2804F4CD009816CD /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				DC0816E828032958009816CD /* AppDelegate.swift */,
+				DC0816EA28032958009816CD /* SceneDelegate.swift */,
+				DC0816F12803295A009816CD /* Assets.xcassets */,
+				DC0816F32803295A009816CD /* LaunchScreen.storyboard */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -187,9 +236,12 @@
 				DC0817462804396B009816CD /* String+Extension.swift in Sources */,
 				DC0817272803DB1B009816CD /* CryptoTableViewController.swift in Sources */,
 				DC08170828032D3F009816CD /* WebServices.swift in Sources */,
+				DC08174A280490C7009816CD /* CryptoDetailViewController.swift in Sources */,
 				DC08172A2803DB1E009816CD /* CryptoTableViewCellViewModel.swift in Sources */,
 				DC0816E928032958009816CD /* AppDelegate.swift in Sources */,
 				DC0816EB28032958009816CD /* SceneDelegate.swift in Sources */,
+				DC08174D280490E5009816CD /* CryptoDetailViewModel.swift in Sources */,
+				DC0817512804910B009816CD /* CryptoDetail.swift in Sources */,
 				DC0817312803DB6E009816CD /* CustomColor.swift in Sources */,
 				DC08172D2803DB20009816CD /* CryptoTableViewCell.swift in Sources */,
 			);

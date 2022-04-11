@@ -26,7 +26,7 @@ struct Coins: Codable {
 
 extension Crypto {
     
-    static var get: Resource<Crypto> = {
+    static var getAll: Resource<Crypto> = {
 
         guard let url = URL(string: "https://api.coinranking.com/v2/coins") else {
             fatalError("URL is incorrect!")
@@ -35,4 +35,6 @@ extension Crypto {
         return  Resource<Crypto>(url: url)
 
     }()
+
 }
+

@@ -29,6 +29,10 @@ struct CryptoViewModel {
 
 extension CryptoViewModel {
 
+    var uuid : String {
+        return self.crypto.uuid
+    }
+    
     var name : String {
         return self.crypto.name
     }
@@ -51,11 +55,11 @@ extension CryptoViewModel {
     
     func percentageChangeColor() -> UIColor {
         guard let percentChange = Float(self.crypto.change) else { return .red }
-        return percentChange >= 0 ? .green : .red
+        return percentChange >= 0 ? UIColor(red: 19/255, green: 188/255, blue: 36/255, alpha: 1) : .red
     }
     
-    func arrowSign() -> UIImage {
-        guard let percentChange = Float(self.crypto.change) else { return UIImage()}
-        return percentChange >= 0 ? UIImage(systemName: "arrow.up") : UIImage(systemName: "arrow.doown")
+    func arrowSign() -> String {
+        guard let percentChange = Float(self.crypto.change) else { return ""}
+        return percentChange >= 0 ? "arrow.up" : "arrow.down"
     }
 }
